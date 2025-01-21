@@ -4,11 +4,14 @@ import com.sbs.qna_service.boundedContext.answer.Answer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
 public class Question {
@@ -32,11 +35,6 @@ public class Question {
 
     // CascadeType.REMOVE 질문이 삭제되면 답변도 같이 삭제된다.
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
-    private List<Answer> answerList;
+    private List<Answer> answerList = new ArrayList<>();
 
-    public Question() {
-        this.createTime = LocalDateTime.now();
-        this.subject = "";
-        this.content = "";
-    }
 }
