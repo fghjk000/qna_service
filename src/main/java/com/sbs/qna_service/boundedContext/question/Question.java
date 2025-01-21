@@ -37,4 +37,9 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList = new ArrayList<>();
 
+    public void addAnswer(Answer a) {
+        a.setQuestion(this); // Question 객체에 Answer 추가
+        answerList.add(a); // Answer 객체에 Question 설정
+    }
+
 }
