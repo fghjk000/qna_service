@@ -1,0 +1,4 @@
+<div th:fragment="formErrorsFragment" class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+    <!-- #fields.hasAnyErrors(): 해당 결과 true인 경우에만 해당 코드가 랜더링 -->
+    <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+</div>
