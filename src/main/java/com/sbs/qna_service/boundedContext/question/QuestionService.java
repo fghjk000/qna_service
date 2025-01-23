@@ -32,12 +32,14 @@ public class QuestionService {
         return oq.get();
     }
 
-    public Answer create(Question question, String content) {
-        Answer answer = new Answer();
-        answer.setContent(content);
-        answer.setCreateDate(LocalDateTime.now());
-        answer.setQuestion(question);
-        answerRepository.save(answer);
-        return answer;
+
+
+    public Question create(String subject, String content) {
+        Question q = new Question();
+        q.setSubject(subject);
+        q.setContent(content);
+        q.setCreateTime(LocalDateTime.now());
+        questionRepository.save(q);
+        return q;
     }
 }

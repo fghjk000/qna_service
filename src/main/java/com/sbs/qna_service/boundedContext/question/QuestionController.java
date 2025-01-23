@@ -4,9 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,6 +13,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor // 요청이 들어올때만 객체 생성
 public class QuestionController {
+
     private final QuestionService questionService;
 
     @GetMapping("/list")
@@ -29,5 +28,16 @@ public class QuestionController {
         Question question = questionService.getQuestion(id);
         model.addAttribute("question", question);
         return "question_detail";
+    }
+
+    @GetMapping("/create")
+    public String questionCreate() {
+        return "question_form";
+    }
+
+    @PostMapping("/create")
+    public String questionCreate(String subject, String content){
+        questionService.create(subject, content);
+        return "redirect:/question/list";
     }
 }
