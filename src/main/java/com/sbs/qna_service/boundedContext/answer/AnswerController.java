@@ -1,7 +1,6 @@
 package com.sbs.qna_service.boundedContext.answer;
 
 import com.sbs.qna_service.boundedContext.question.Question;
-import com.sbs.qna_service.boundedContext.question.QuestionRepository;
 import com.sbs.qna_service.boundedContext.question.QuestionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -1,9 +1,7 @@
 package com.sbs.qna_service.boundedContext.answer;
 
 import com.sbs.qna_service.boundedContext.question.Question;
-import com.sbs.qna_service.boundedContext.question.QuestionService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

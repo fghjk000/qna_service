@@ -1,10 +1,12 @@
 package com.sbs.qna_service.boundedContext.question;
 
 
-import com.sbs.qna_service.boundedContext.answer.Answer;
 import com.sbs.qna_service.boundedContext.answer.AnswerRepository;
 import com.sbs.qna_service.excption.DataNotFoundException;
+import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -41,5 +43,11 @@ public class QuestionService {
         q.setCreateTime(LocalDateTime.now());
         questionRepository.save(q);
         return q;
+    }
+
+    public Page<Question> getList(int page) {
+        // Pageable : 페이징 정보를 담는 객체
+        Pageable pageable = PageRequest.of(page, 10);
+        return questionRepository.findAll(pageable);
     }
 }
