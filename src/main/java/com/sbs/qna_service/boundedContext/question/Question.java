@@ -41,5 +41,4 @@ public class Question {
         a.setQuestion(this); // Question 객체에 Answer 추가
         answerList.add(a); // Answer 객체에 Question 설정
     }
-
 }
