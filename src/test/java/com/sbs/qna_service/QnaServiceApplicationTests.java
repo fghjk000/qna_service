@@ -5,6 +5,8 @@ import com.sbs.qna_service.boundedContext.answer.AnswerRepository;
 import com.sbs.qna_service.boundedContext.question.Question;
 import com.sbs.qna_service.boundedContext.question.QuestionRepository;
 import com.sbs.qna_service.boundedContext.question.QuestionService;
+import com.sbs.qna_service.boundedContext.user.UserRepository;
+import com.sbs.qna_service.boundedContext.user.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +27,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class QnaServiceApplicationTests {
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private QuestionService questionService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private QuestionRepository questionRepository;
@@ -43,6 +51,14 @@ class QnaServiceApplicationTests {
         answerRepository.deleteAll();
 
         answerRepository.clearAutoIncrement();
+
+        // 모든 데이터 삭제
+        userRepository.deleteAll();
+
+        userRepository.clearAutoIncrement();
+
+        userService.create("user1", "user1@test.com", "1234");
+        userService.create("user2", "user2@test.com", "1234");
 
         Question q1 = new Question();
         q1.setSubject("sbb가 무엇인가요?");
