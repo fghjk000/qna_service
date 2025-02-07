@@ -1,6 +1,7 @@
 package com.sbs.qna_service.boundedContext.answer;
 
 import com.sbs.qna_service.boundedContext.question.Question;
+import com.sbs.qna_service.boundedContext.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,5 +28,8 @@ public class Answer {
     @ManyToOne
     @ToString.Exclude
     private Question question;
+
+    @ManyToOne
+    private SiteUser author;
 
 }
