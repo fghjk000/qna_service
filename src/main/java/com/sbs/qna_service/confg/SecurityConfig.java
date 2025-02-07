@@ -23,6 +23,7 @@ public class SecurityConfig {
                 .requestMatchers(new AntPathRequestMatcher("/question/detail/*")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/user/signup")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/user/login")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/style.css")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/")).permitAll()
                 .anyRequest().authenticated() // 그 외의 요청은 인증이 필요하다.
         )
@@ -33,7 +34,11 @@ public class SecurityConfig {
                 // POST
                 // 시큐리티에게 로그인 폼 처리 URL을 알려준다.
         .loginProcessingUrl("/user/login") // 로그인 처리시 요청 경로
-        .defaultSuccessUrl("/")); // 로그인 성공시 리다이렉트 경로
+        .defaultSuccessUrl("/")) // 로그인 성공시 리다이렉트 경로
+        .logout((logout) -> logout
+                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true));
     return http.build();
     }
 
